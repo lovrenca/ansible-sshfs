@@ -1,4 +1,5 @@
 ---
+
 - name: Create fstab mount point
   file:
     path: "{{ item.path }}"
