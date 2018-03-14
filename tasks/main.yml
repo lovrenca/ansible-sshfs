@@ -1,0 +1,8 @@
+---
+- include: install_sshfs_rhel.yml
+  when: ansible_os_family == "RedHat"
+
+- include: install_sshfs_ubuntu.yml
+  when: ansible_os_family == "Debian"
+
+- include: configure_sshfs.yml

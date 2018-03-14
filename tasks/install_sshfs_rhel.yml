@@ -1,0 +1,11 @@
+- name: Install epel release - rhel
+  yum:
+    state: present
+    name: epel-release
+    enablerepo: "base,extras"
+
+- name: Install sshfs - rhel
+  yum:
+    state: present
+    name: fuse-sshfs
+    enablerepo: "base,extras"

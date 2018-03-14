@@ -1,0 +1,17 @@
+---
+- name: Create fstab mount point
+  file:
+    path: "{{ item.path }}"
+    state: directory
+  with_items: "{{ sshfs_mounts }}"
+  when: sshfs_mounts is defined
+
+- name: Create fstab mounts
+  mount:
+    fstype: fuse.sshfs
+    src: "{{ item.src }}"
+    path: "{{ item.path }}"
+    state: mounted
+    opts: "defaults,_netdev"
+  when: sshfs_mounts is defined
+  with_items: "{{ sshfs_mounts }}"
