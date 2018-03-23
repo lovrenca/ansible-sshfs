@@ -12,7 +12,7 @@
     fstype: fuse.sshfs
     src: "{{ item.src }}"
     path: "{{ item.path }}"
-    state: mounted
-    opts: "defaults,_netdev"
+    state: "{{ item.state|default(mounted) }}"
+    opts: "defaults,allow_other,_netdev{{ item.opts|default(omit) }}"
   when: sshfs_mounts is defined
   with_items: "{{ sshfs_mounts }}"
